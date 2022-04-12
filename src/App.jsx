@@ -1,58 +1,30 @@
-import './App.css';
-import React, { useEffect, useState } from 'react';
-
-//import components
-import MyTable from './components/table';
+import {
+  Login,
+  Register,
+  Home
+} from './pages'
+import {Switch, Route} from 'react-router-dom';
 
 function App() {
-
-  const [datas, setData] = useState(
-    [
-      {
-        id : 1,
-        name : "dio"
-      },
-      {
-        id : 2,
-        name : "harvandy"
-      },
-      {
-        id : 3,
-        name : "dio harvandy"
-      },
-      {
-        id : 4,
-        name : "harvandy dio"
-      },
-    ]
-  )
-
-  const [columns,setColumns] =  useState([
-    'id',
-    'name'
-  ])
-
-  const handleDelete = (id)=>{
-    setData(datas.filter((v)=> {
-      return (v.id!==id)
-    }))
-  }
-  useEffect(()=>{
-    console.log("Use Effect Run")
-  },[])
-  return (
+  
+  return(
     <div className="container">
-      <div className="row justify-content-center">
-        <div className="col-md-4">
-        <MyTable
-            columns = {columns}
-            datas = {datas}
-            onDelete = {handleDelete}
-          />
+    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <div className="navbar-item px-3">
+            <a className='navbar-brand mb-0 h1' href="/" exact = "true">Home</a>
+            <a className='navbar-brand' href="/register">Register</a>
+            <a className='navbar-brand' href="/login">Login</a>
         </div>
+    </nav>
+      <div className="py-5">
+        <Switch>
+          <Route component={Home} path = "/" exact/>  
+          <Route component={Register} path = "/register"/>
+          <Route component={Login} path = "/login"/>
+        </Switch> 
       </div>
     </div>
-  );
+  )  
 }
 
 export default App;
