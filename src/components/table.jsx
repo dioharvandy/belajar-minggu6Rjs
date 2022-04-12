@@ -1,22 +1,45 @@
 
 
 const MyTable = ({
-    data,
+    columns,
+    datas,
     onDelete
 })=>{
     return (
         // <button>click me !</button>
-       data.map((v) => {
-           return(
-        <>
-           <tr className="text-center">
-               <td>{v.id}</td>
-               <td>{v.name}</td>
-               <td><button className="btn btn-sm btn-danger" onClick={()=>{window.confirm('delete this item?') && onDelete(v.id)}}>Delete</button></td>
-           </tr>
-        </>
-        )
-       })
+        <table className="table">
+        <thead>
+          <tr  className='text-center'>
+{
+        columns?.map((v)=>{
+            return(
+                <th scope="col">{v}</th>
+            )
+        })
+}
+          </tr>
+        </thead>
+        <tbody>
+{
+           datas?.map((v) => {
+            return(
+         <>
+            <tr className="text-center">
+{
+                Object.keys(v).map((x)=>{
+                    return(
+                        <td>{v[x]}</td>
+                    )
+                })
+}
+                <td><button className="btn btn-sm btn-danger" onClick={()=>{window.confirm('delete this item?') && onDelete(v.id)}}>Delete</button></td>
+            </tr>
+         </>
+         )
+        })
+}            
+        </tbody>
+      </table>
     )
 }
 

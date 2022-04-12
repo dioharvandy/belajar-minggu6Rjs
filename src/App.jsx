@@ -1,16 +1,12 @@
-import logo from './logo.svg';
 import './App.css';
 import React, { useEffect, useState } from 'react';
 
 //import components
-import MyButton from './components/button';
 import MyTable from './components/table';
 
 function App() {
 
-  const [counter, setCounter] = useState(0)
-  const [buttonName, setButtonName] = useState("Button Components (Child)")
-  const [data, setData] = useState(
+  const [datas, setData] = useState(
     [
       {
         id : 1,
@@ -30,13 +26,16 @@ function App() {
       },
     ]
   )
+
+  const [columns,setColumns] =  useState([
+    'id',
+    'name'
+  ])
+
   const handleDelete = (id)=>{
-    setData(data.filter((v)=> {
+    setData(datas.filter((v)=> {
       return (v.id!==id)
     }))
-  }
-  const handleCounter = (num)=>{
-    setCounter(counter+num)
   }
   useEffect(()=>{
     console.log("Use Effect Run")
@@ -45,21 +44,11 @@ function App() {
     <div className="container">
       <div className="row justify-content-center">
         <div className="col-md-4">
-          <table className="table">
-            <thead>
-              <tr  className='text-center'>
-              <th>id</th>
-              <th>name</th>
-              <th>action</th>
-              </tr>
-            </thead>
-            <tbody>
-              <MyTable
-                data = {data}
-                onDelete = {handleDelete}
-              />
-            </tbody>
-          </table>
+        <MyTable
+            columns = {columns}
+            datas = {datas}
+            onDelete = {handleDelete}
+          />
         </div>
       </div>
     </div>
