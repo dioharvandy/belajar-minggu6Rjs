@@ -42,27 +42,6 @@ function App() {
     console.log("Use Effect Run")
   },[])
   return (
-    // <div className="App">
-    //   <header className="App-header">
-    //     <img src={logo} className="App-logo" alt="logo" />
-    //     <p>
-    //       {/* Edit <code>src/App.js</code> and save to reload.*/} {counter} Total Click
-    //     </p>
-    //     <button onClick={()=> handleCounter(1)} className = "btn btn-primary">Click Me ! (parent)</button><br />
-    //     <MyButton
-    //       buttonName = {buttonName}
-    //       handleCounter = {()=> handleCounter(2)}
-    //     />
-    //     {/* <a
-    //       className="App-link"
-    //       href="https://reactjs.org"
-    //       target="_blank"
-    //       rel="noopener noreferrer"
-    //     >
-    //       Learn React
-    //     </a> */}
-    //   </header>
-    // </div>
     <div className="container">
       <div className="row justify-content-center">
         <div className="col-md-4">
