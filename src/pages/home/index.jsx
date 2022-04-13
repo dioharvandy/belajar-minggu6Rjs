@@ -45,17 +45,33 @@ const Home = ()=>{
       useEffect(()=>{
         getActivity()
       },[])
+      
+      const [meme, setMeme] = useState([])
+      const getMeme = ()=>{
+        const memes = {
+          method: 'GET',
+          url: 'https://meme-api.herokuapp.com/gimme',
+        };
+        axios.request(memes).then(function (response) {
+          setMeme(response.data)
+        }).catch(function (error) {
+          console.error(error);
+        });
+      }
+      useEffect(()=>{
+        getMeme()
+      },[])
       return (
         <>
           <div className="row justify-content-center">
-            <div className="col-md-6">
+            <div className="col-md-4">
             <MyTable
                 columns = {columns}
                 datas = {datas}
                 onDelete = {handleDelete}
               />
             </div>
-            <div className="col-md-6">
+            <div className="col-md-4">
               {/* {JSON.stringify(activity)} */}
               <div className="card text-center border-primary">
               <div className="card-header">
@@ -67,6 +83,20 @@ const Home = ()=>{
                 <h6 className="card-subtitle mb-2 text-muted">Type Of Activity </h6>
                 <p className="card-text">{activity.type}</p>
                 <button type='button' onClick={()=> getActivity()} className="btn btn-sm btn-primary">Try Another</button>
+              </div>
+            </div>
+            </div>
+            <div className="col-md-4">
+              {/* {JSON.stringify(activity)} */}
+              <div className="card text-center border-primary">
+              <div className="card-header">
+                Meme Card
+              </div>
+              <img class="card-img-top" src={meme.preview[3]} alt = {meme.preview[0]} style={{height : "15rem"}}/>
+              <div className="card-body">
+                <h6 className="card-title">Author</h6>
+                <p className="card-text">redd.it : @{meme.author}</p>
+                <button type='button' onClick={()=> getMeme()} className="btn btn-sm btn-primary">Try Another</button>
               </div>
             </div>
             </div>
