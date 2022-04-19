@@ -98,8 +98,8 @@ const Home = ()=>{
                                     <p className="card-text">redd.it : @{meme.author}</p>
                                     <button type='button' onClick={()=> getMeme()} className="btn btn-sm btn-primary">Next Meme</button>
                                  </div></> : <div className="card-body">
-                                              <div class="spinner-border text-primary" role="status">
-                                                <span class="sr-only"></span>
+                                              <div className="spinner-border text-primary" role="status">
+                                                <span className="sr-only"></span>
                                               </div>
                                             </div>                                     
                 }            

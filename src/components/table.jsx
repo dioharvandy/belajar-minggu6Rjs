@@ -1,19 +1,23 @@
-
-
 const MyTable = ({
     columns,
     datas,
-    onDelete
+    onDelete,
+    type
 })=>{
     return (
         // <button>click me !</button>
+        <>
+        
         <table className="table table-striped table-bordered">
         <thead>
+          <tr>
+              <th colSpan={columns.length+1}>{type==="cars"?<a className="btn btn-sm btn-primary" href={`cars/add`}>Add</a>:false}</th>
+          </tr>
           <tr  className='text-center'>
         {
-        columns?.map((v)=>{
+        columns?.map((column)=>{
             return(
-                <th scope="col">{v}</th>
+                <th scope="col">{column}</th>
             )
         })
         }
@@ -22,18 +26,19 @@ const MyTable = ({
         </thead>
         <tbody>
         {
-           datas?.map((v) => {
+           datas?.map((data) => {
             return(
          <>
             <tr className="text-center">
         {
-                Object.keys(v).map((x)=>{
+                Object.keys(data).map((key)=>{
                     return(
-                        <td>{v[x]}</td>
+                        <td>{data[key]}</td>
                     )
                 })
         }
-                <td><button className="btn btn-sm btn-danger" onClick={()=>{window.confirm('delete this item?') && onDelete(v.id)}}>Delete</button></td>
+                <td>
+                    <button className="btn btn-sm btn-danger" onClick={()=>{window.confirm('delete this item?') && onDelete(data.id)}}>Delete</button> {type === "cars"?<a className="btn btn-sm btn-success" href={`cars/edit/${data.id}`}>Edit</a>:false}</td>
             </tr>
          </>
          )
@@ -41,6 +46,7 @@ const MyTable = ({
         }            
         </tbody>
       </table>
+      </>
     )
 }
 
